@@ -20,7 +20,7 @@ Each item should be written as a use case and not as a technical description of 
 - Resizing
 
   Pros:
-      Is needed for eg. 4:2:0 loading in JPEG.
+      Is needed inside loaders for eg. 4:2:0 loading in JPEG.
   Cons:
       Is an opinionated operation! Many ways to do it.
 
@@ -34,13 +34,12 @@ Each item should be written as a use case and not as a technical description of 
       Most of algorithms end up being written for contiguous in-memory images anyway.
       Like `std.range`, functions are all defined externally hence not quite easy to discover.
 
-- Images are 2D array-like object
 
-  Pros:
-      Easier and intuitive, 2D is what we think when we think of an "image"
-      Less work and template work.
-  Cons:
-      Some images really are 3D or more, in various scientific fields.
+Unsolved disagreement:
+- Images are 1D?
+- Images are 2D?
+- Images are 3D?
+- Images are N-dimensional?
 
 - Image formats should auto-convert to a request color
 
@@ -49,6 +48,7 @@ Each item should be written as a use case and not as a technical description of 
 
   cons:
     - Extra conversions making things less clean
+
 - Custom allocators
 
 - Images types should have a runtime interface
