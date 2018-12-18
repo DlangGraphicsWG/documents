@@ -12,14 +12,35 @@ Each item should be written as a use case and not as a technical description of 
 - IAllocator and friends to customize and pool of resources
 
 ## Internal to library
+
 - Image that can be a buffer for render widgets
+
 - Animated images
+
 - Resizing
-- If unopinionated must support anything resonable
-- Images are 1D arrays
-- Images are 2D arrays
-- Images are N-Dimensional input/forward ranges
-- Be able to change the definition of an image resonably easily (could be 2D to begin with then ND later on)
+
+  Pros:
+      Is needed inside loaders for eg. 4:2:0 loading in JPEG.
+  Cons:
+      Is an opinionated operation! Many ways to do it.
+
+- Images (and Image operations) are range-like objects that can be composed like in `ae.utils.graphics`
+
+  Pros:
+      Friendly and efficient UFCS chains of operations (need good names).
+      The Pros of Input ranges, but for images.
+  Cons:
+      UFCS chains may leave no room to pass a complex context.
+      Most of algorithms end up being written for contiguous in-memory images anyway.
+      Like `std.range`, functions are all defined externally hence not quite easy to discover.
+
+
+Unsolved disagreement:
+- Images are 1D?
+- Images are 2D?
+- Images are 3D?
+- Images are N-dimensional?
+
 - Image formats should auto-convert to a request color
 
   pros:
@@ -27,7 +48,20 @@ Each item should be written as a use case and not as a technical description of 
 
   cons:
     - Extra conversions making things less clean
+
 - Custom allocators
+
+- Images types should have a runtime interface
+
+  Pros:
+      The main advantage is that you can avoid to template something by the Image type.
+      (Like std.allocator have IAllocator so that containers can avoid being templated by the allocators specific type)
+      Allows crossing binary interfaces like shared libraries.
+      Format conversion may need this internally.
+      This "type-punning" reduce template bloat and compile times.
+  Cons:
+      More work.
+      The runtime interface has virtual dispatch.
 
 ## External (file formats, that sort of thing)
 - Loading+Exporting an image to ubytes
