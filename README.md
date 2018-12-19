@@ -8,11 +8,10 @@ The output of the Dlang Graphics Workgroup: a technical recommendation for an Im
 
 Please vote on proposals here: https://github.com/DlangGraphicsWG/documents/pulls
 
-Current list of unsolved disagreements: https://github.com/DlangGraphicsWG/documents/wiki
-
-Current requirements gathered: [requirements.md](requirements.md)
-
-Current decision process: [decision-process.md](decision-process.md)
+- Image: [requirements.md](image.md)
+- Image Loading: [requirements.md](image-loading.md)
+- Image Resizing: [requirements.md](image-resizing.md)
+- Decision process: [decision-process.md](decision-process.md)
 
 
 # Goals
@@ -20,7 +19,6 @@ Current decision process: [decision-process.md](decision-process.md)
 
 The Dlang Graphics Workgroup is a collective of D library writers who want to
 make libraries together with a collegial design.
-
 
 
 We feel that Phobos leads the path towards building reusable, expressive abstractions;
