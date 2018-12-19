@@ -8,9 +8,10 @@ The output of the Dlang Graphics Workgroup: a technical recommendation for an Im
 
 Please vote on proposals here: https://github.com/DlangGraphicsWG/documents/pulls
 
+- Color: [color.md](color.md)
 - Image: [requirements.md](image.md)
-- Image Loading: [requirements.md](image-loading.md)
-- Image Resizing: [requirements.md](image-resizing.md)
+- Image Loading: [image-loading.md](image-loading.md)
+- Image Resizing: [image-resizing.md](image-resizing.md)
 - Decision process: [decision-process.md](decision-process.md)
 
 
