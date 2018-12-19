@@ -28,13 +28,19 @@ reified and talked upon, rather than hidden behind individual initiatives.
       * must have a strict majority of votes "no"
       * AND must have gathered at least three vote "no"
 
-   One can vote "blank" which means "half-yes, half-no", in which case it's not counted.
-
    If there are insufficient votes, or if no one wants to merge/reject yet, the period 
-   of voting is extended with a maximum of one month. It is rejected due to lack of interest.
+   of voting is extended for 24h, with a maximum of one month. 
+   After that duration, it is rejected due to lack of interest.
 
-5. A proposal cannot be merged or rejected by the same person making the proposal.
+5. One can vote "yes-if(X)" or "no-if(X)" to a proposal which mean the vote counts as a "yes" 
+   if the Proposal's submitter answers the concern of the voter, and a "no" instead.
+   This is meant for clarification. Reviewers are trusted to compute X in an impartial way.
+   The yes-if and no-if variants of votes have to be managed through Github reviews.
+   In the case of a single voter having several Github reviews, whose result is conflicting, 
+   the "no" wins.
 
-6. A proposal being merged or rejected doesn't mean the debate is closed.
+6. A proposal cannot be merged or rejected by the same person making the proposal.
 
-7. This document is self-referential. Process modifications themselves must follow this document.
+7. A proposal being merged or rejected doesn't mean the debate is closed.
+
+8. This document is self-referential. Process modifications themselves must follow this document.
