@@ -52,6 +52,14 @@ DLang Graphics Research
 - **ae/ui** https://github.com/CyberShadow/ae/tree/master/ui
 
 
+## Dialogs
+- **Native File Dialog** https://github.com/mlabbe/nativefiledialog
+
+- **tinyfiledialogs** https://github.com/native-toolkit/tinyfiledialogs
+
+- **Boxer** https://github.com/aaronmjacobs/Boxer
+
+
 ## Window & Input & Event
 - **SDL** https://www.libsdl.org  
   D binding: https://github.com/DerelictOrg/DerelictSDL2
