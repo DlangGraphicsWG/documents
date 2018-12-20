@@ -42,7 +42,7 @@ DLang Graphics Research
 - **Nuklear** https://github.com/vurtun/nuklear  
   D binding: https://github.com/mogud/nukleard
 
-- **dear imgui** https://github.com/ocornut/imgui  
+- **Dear ImGui** https://github.com/ocornut/imgui  
   D binding: https://github.com/Extrawurst/DerelictImgui  
   D port: https://github.com/d-gamedev-team/dimgui
 
@@ -50,10 +50,21 @@ DLang Graphics Research
   D binding: https://github.com/Extrawurst/DerelictLibui  
   D wrapper: https://github.com/mogud/libuid
 
+- **FLTK** https://github.com/fltk/fltk
+
+- **Clutter** https://github.com/ebassi/clutter
+  D binding: https://github.com/alvatar/d-clutter-bindings (2010)
+
+- **IUP** http://iup.sourceforge.net
+  D binding: https://github.com/carblue/iup
+  D binding: https://bitbucket.org/alphaglosined/libglosined/src/85ab6b2135879848e7efd5f1dfa732f2cfb753f8/iup/?at=default
+
 ---
 - **Dlang UI** https://github.com/buggins/dlangui
 
 - **DWT** https://github.com/d-widget-toolkit/dwt
+
+- **DQuick** https://github.com/D-Quick/DQuick
 
 - **arsd/simpledisplay** https://github.com/adamdruppe/arsd/blob/master/simpledisplay.d  
   **arsd/minigui** https://github.com/adamdruppe/arsd/blob/master/minigui.d
