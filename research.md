@@ -150,8 +150,8 @@ DLang Graphics Research
 
 
 ## Uncategorized
-- **Allegro5** https://github.com/liballeg/allegro5
-  D binding: https://github.com/DerelictOrg/DerelictAllegro5
+- **Allegro5** https://github.com/liballeg/allegro5  
+  D binding: https://github.com/DerelictOrg/DerelictAllegro5  
   D binding: https://github.com/SiegeLord/DAllegro5
 
 - **ae/utils/graphics** https://github.com/CyberShadow/ae/tree/master/utils/graphics
