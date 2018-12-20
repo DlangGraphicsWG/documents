@@ -52,11 +52,11 @@ DLang Graphics Research
 
 - **FLTK** https://github.com/fltk/fltk
 
-- **Clutter** https://github.com/ebassi/clutter
+- **Clutter** https://github.com/ebassi/clutter  
   D binding: https://github.com/alvatar/d-clutter-bindings (2010)
 
-- **IUP** http://iup.sourceforge.net
-  D binding: https://github.com/carblue/iup
+- **IUP** http://iup.sourceforge.net  
+  D binding: https://github.com/carblue/iup  
   D binding: https://bitbucket.org/alphaglosined/libglosined/src/85ab6b2135879848e7efd5f1dfa732f2cfb753f8/iup/?at=default
 
 ---
