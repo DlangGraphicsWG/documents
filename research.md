@@ -4,17 +4,24 @@ DLang Graphics Research
 ## Building Blocks
 ### Color
 - **std.experimental.color** https://github.com/TurkeyMan/color
+
 - **arsd/color** https://github.com/adamdruppe/arsd/blob/master/color.d
+
 - **dlib/image/color** https://github.com/gecko0307/dlib/blob/master/dlib/image/color.d
+
 
 ### Linear Algebra
 - **gfm:math** https://github.com/d-gamedev-team/gfm/tree/master/math/gfm/math
+
 - **gl3n** https://github.com/Dav1dde/gl3n
+
 - **dlib/math** https://github.com/gecko0307/dlib/tree/master/dlib/math
+
 
 ### Half Float
 - **sargon/halfloat** https://github.com/DigitalMars/sargon/blob/master/src/sargon/halffloat.d  
   Docs: https://digitalmars.com/sargon/halffloat.html
+
 
 
 ## GUI
@@ -46,10 +53,13 @@ DLang Graphics Research
 ---
 - **Dlang UI** https://github.com/buggins/dlangui
 
+- **DWT** https://github.com/d-widget-toolkit/dwt
+
 - **arsd/simpledisplay** https://github.com/adamdruppe/arsd/blob/master/simpledisplay.d  
   **arsd/minigui** https://github.com/adamdruppe/arsd/blob/master/minigui.d
 
 - **ae/ui** https://github.com/CyberShadow/ae/tree/master/ui
+
 
 
 ## Dialogs
@@ -58,6 +68,7 @@ DLang Graphics Research
 - **tinyfiledialogs** https://github.com/native-toolkit/tinyfiledialogs
 
 - **Boxer** https://github.com/aaronmjacobs/Boxer
+
 
 
 ## Window & Input & Event
@@ -72,6 +83,7 @@ DLang Graphics Research
   D binding: https://github.com/Jebbs/DSFML
 
 
+
 ## Renderer
 - **NanoVG** https://github.com/memononen/NanoVG  
 	- D port: https://github.com/adamdruppe/arsd/blob/master/nanovega.d  
@@ -81,6 +93,7 @@ DLang Graphics Research
 - **Cairo** https://www.cairographics.org  
   D wrapper: https://github.com/cairoD/cairoD  
   D binding: https://github.com/D-Programming-Deimos/cairo  
+
 
 
 ## Image
@@ -101,6 +114,7 @@ DLang Graphics Research
 - **dlib/image** https://github.com/gecko0307/dlib/tree/master/dlib/image
 
 
+
 ## Text
 ### Font Loading & Rasterization
 - **FreeType** https://www.freetype.org  
@@ -117,6 +131,7 @@ DLang Graphics Research
 - **HarfBuzz** https://www.freedesktop.org/wiki/Software/HarfBuzz
 
 - **Pango** https://www.pango.org
+
 
 
 ## Uncategorized
