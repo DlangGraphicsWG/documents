@@ -11,7 +11,7 @@ DLang Graphics Research
 
 
 ### Linear Algebra
-- **gfm:math** https://github.com/d-gamedev-team/gfm/tree/master/math/gfm/math
+- **gfm/math** https://github.com/d-gamedev-team/gfm/tree/master/math/gfm/math
 
 - **gl3n** https://github.com/Dav1dde/gl3n
 
@@ -37,7 +37,7 @@ DLang Graphics Research
   D binding: https://github.com/gtkd-developers/GtkD
 
 - **Nanogui** https://github.com/wjakob/nanogui  
-  D binding: https://github.com/drug007/nanogui
+  D port: https://github.com/drug007/nanogui
 
 - **Nuklear** https://github.com/vurtun/nuklear  
   D binding: https://github.com/mogud/nukleard
@@ -59,7 +59,8 @@ DLang Graphics Research
   D binding: https://github.com/carblue/iup  
   D binding: https://bitbucket.org/alphaglosined/libglosined/src/85ab6b2135879848e7efd5f1dfa732f2cfb753f8/iup/?at=default
 
----
+- **LittlevGL** https://github.com/littlevgl/lvgl
+
 - **Dlang UI** https://github.com/buggins/dlangui
 
 - **DWT** https://github.com/d-widget-toolkit/dwt
@@ -93,6 +94,10 @@ DLang Graphics Research
   D binding: https://github.com/DerelictOrg/DerelictSFML2  
   D binding: https://github.com/Jebbs/DSFML
 
+- **SPEW** https://github.com/Devisualization/spew
+
+- **dplug/window** https://github.com/AuburnSounds/Dplug/tree/master/window/dplug/window
+
 
 
 ## Renderer
@@ -119,7 +124,6 @@ DLang Graphics Research
 - **DevIL** https://github.com/DentonW/DevIL  
   D binding: https://github.com/DerelictOrg/DerelictIL
 
----
 - **arsd/image** https://github.com/adamdruppe/arsd/blob/master/image.d
 
 - **dlib/image** https://github.com/gecko0307/dlib/tree/master/dlib/image
@@ -146,4 +150,8 @@ DLang Graphics Research
 
 
 ## Uncategorized
+- **Allegro5** https://github.com/liballeg/allegro5
+  D binding: https://github.com/DerelictOrg/DerelictAllegro5
+  D binding: https://github.com/SiegeLord/DAllegro5
+
 - **ae/utils/graphics** https://github.com/CyberShadow/ae/tree/master/utils/graphics
