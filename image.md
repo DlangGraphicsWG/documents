@@ -1,6 +1,6 @@
 # What is an Image?
 
-- Images (and Image operations) are range-like objects that can be composed like in `ae.utils.graphics`
+- View!Color (and operations on these) are range-like objects that can be composed like in `ae.utils.graphics`
 
   * Pros:
       - Friendly and efficient UFCS chains of operations (need good names).
@@ -11,19 +11,32 @@
       - Most of algorithms end up being written for contiguous in-memory images anyway.
       - Like `std.range`, functions are all defined externally hence not quite easy to discover.
 
+- Images types should have a runtime interface. This interface is a POD `struct`
+  that looks like:
+```d
+    struct RuntimeImage
+    {
+        int width, height;
+        size_t pitchbetweenRows;
+        void* data;
+        PixelFormat whateverIsNeeded;
+    }
+```
 
-- Images types should have a runtime interface
+  RuntimeImage will get the easiest name, not View!T.
 
   * Pros:
-      - The main advantage is that you can avoid to template something by the Image type.
-      - (Like std.allocator have IAllocator so that containers can avoid being templated by the allocators specific type)
-      - Allows crossing binary interfaces like shared libraries.
+      - Simplest thing that works.
+      - You can avoid to template something by the Color type.
+      - Allows crossing binary interfaces, like shared libraries and C ABI.
       - Format conversion may need this internally.
       - This "type-punning" reduce template bloat and compile times.
+      - not an `interface` so avoid classes
 
   * Cons:
       - More work.
-      - The runtime interface has virtual dispatch.
+      - The runtime interface l virtual dispatch.
+      - not an `interface` so inheritance is limited
 
 - a buffer to render widgets to, is an Image
 
@@ -35,6 +48,8 @@
 
 
 # Open questions (no vote occured yet)
+
+- Who owns `RuntimeImage` data?
 
 - whether the Image abstraction is 2D (N = 2), 3D-or-less (N <= 3) or N-dimensional (any N)
 
