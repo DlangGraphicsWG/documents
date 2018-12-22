@@ -26,17 +26,17 @@
   RuntimeImage will get the easiest name, not View!T.
 
   * Pros:
-      - Simplest thing that works.
-      - You can avoid to template something by the Color type.
       - Allows crossing binary interfaces, like shared libraries and C ABI.
+      - Simplest thing that works.
+      - You can avoid to template something by the Color type. This "type-punning" reduce template bloat and compile times.     
       - Format conversion may need this internally.
-      - This "type-punning" reduce template bloat and compile times.
-      - not an `interface` so avoid classes
+      - Instruction-cache friendly.
+      - Not an `interface` so avoid classes and associated woes.
 
   * Cons:
-      - More work.
-      - The runtime interface l virtual dispatch.
-      - not an `interface` so inheritance is limited
+      - Operating on a `RuntimeImage` may require switches and exhaustive work.
+      - Not an `interface` so inheritance is limited
+      - templates were inherently "open-method" at compile-time
 
 - a buffer to render widgets to, is an Image
 
