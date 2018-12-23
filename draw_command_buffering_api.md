@@ -8,7 +8,7 @@ This API provides functionality to draw primitives issuing draw commands that wi
 - point
 - line
 - polyline
-- polygone (probably convex only?)
+- polygone (convex only)
 - rectangle
 - ellipse
 - text
@@ -24,47 +24,64 @@ Example of draw command buffer API:
 
 # Sample API
 
-Based on dearimgui and nuklear APIs
+There are many ways to implement draw command buffer that do same things in different and non-interchangeble ways. For example `dearimgui` and `nuklear` implements draw command buffer in very similar but non API compatible ways. This document try to define one of possible variants based on `dearimgui` and `nuklear` APIs
 
 ```D
 enum Stroke { open = false, closed = true }
 enum AntiAliasing { off, on }
 
 // Path API
-path_clear(Ctx);
-path_line_to(Ctx, Vec2 pos);
-path_arc_to(Ctx, Vec2 center, float radius, float a_min, float a_max, uint segments);
-path_rect_to(Ctx, Vec2 a, Vec2 b, float rounding);
-path_curve_to(Ctx, Vec2 p2, Vec2 p3, Vec2 p4, uint num_segments);
-path_fill(Ctx, Color);
-path_stroke(Ctx, Color, Stroke closed, float thickness);
+pathClear(Ctx);
+pathLineTo(Ctx, Vec2 pos);
+pathArcTo(Ctx, Vec2 center, float radius, float a_min, float a_max, uint segments);
+pathRectTo(Ctx, Vec2 a, Vec2 b, float rounding);
+pathCurveTo(Ctx, Vec2 p2, Vec2 p3, Vec2 p4, uint num_segments);
+pathFill(Ctx, Color);
+pathStroke(Ctx, Color, Stroke closed, float thickness);
 
 // stroke
-stroke_line(Ctx, Vec2 a, Vec2 b, Color, float thickness);
-stroke_rect(Ctx, rect, Color, float rounding, float thickness);
-stroke_triangle(Ctx, Vec2 a, Vec2 b, Vec2 c, Color, float thickness);
-stroke_circle(Ctx, Vec2 center, float radius, Color, uint segs, float thickness);
-stroke_curve(Ctx, Vec2 p0, Vec2 cp0, Vec2 cp1, Vec2 p1, Color, uint segments, float thickness);
-stroke_poly_line(Ctx, ref const(Vec2) pnts, uint cnt, Color, Stroke, float thickness, AntiAliasing aa);
+strokeLine(Ctx, Vec2 a, Vec2 b, Color, float thickness);
+strokeRect(Ctx, rect, Color, float rounding, float thickness);
+strokeTriangle(Ctx, Vec2 a, Vec2 b, Vec2 c, Color, float thickness);
+strokeCircle(Ctx, Vec2 center, float radius, Color, uint segs, float thickness);
+strokeCurve(Ctx, Vec2 p0, Vec2 cp0, Vec2 cp1, Vec2 p1, Color, uint segments, float thickness);
+strokePolyLine(Ctx, ref const(Vec2) pnts, uint cnt, Color, Stroke, float thickness, AntiAliasing aa);
 
 // fill
-fill_rect(Ctx, rect, Color, float rounding);
-fill_triangle(Ctx, Vec2 a, Vec2 b, Vec2 c, Color);
-fill_circle(Ctx, Vec2 center, float radius, Color col, uint segs);
-fill_poly_convex(Ctx, ref const(Vec2) pnts, uint count, Color, AntiAliasing aa);
+fillRect(Ctx, rect, Color, float rounding);
+fillTriangle(Ctx, Vec2 a, Vec2 b, Vec2 c, Color);
+fillCircle(Ctx, Vec2 center, float radius, Color col, uint segs);
+fillPolyConvex(Ctx, ref const(Vec2) pnts, uint count, Color, AntiAliasing aa);
 
 // image
-add_image(Ctx, Image texture, rect, Color);
+addImage(Ctx, Image texture, rect, Color);
 
 // text
-add_text(Ctx, ref Font, Rect, string text, float font_height, Color);
+addText(Ctx, ref Font, Rect, string text, float font_height, Color);
 
 // scissor
 scissor(Ctx, Rect);
 ```
 
 Notes:
-- deargui has ability to cancel previous scissor but it is just sugar
-- Dearimgui provides additional functionality - channels.
-- Nuklear and dearimgui have close implemention. Path stroking lowered to polyline drawing with or without antialiasing with very similar implementation details. For example nanovega has very different implementation details but probably it is because tightly coupling with opengl backend. dearimgui and nuklear are much more backend agnostic, especially nuklear.
+- `Dearimgui` has ability to cancel previous scissor but it is just sugar
+- `Dearimgui` provides additional functionality - channels.
+- `Nuklear` and `dearimgui` have close implemention. Path stroking lowered to polyline drawing with or without antialiasing with very similar implementation details. For example `nanovega` has very different implementation details but probably it is because tightly coupling with opengl backend. `dearimgui` and `nuklear` are much more backend agnostic.
 
+## Open questions:
+1. context+standalone functions (`nuklear`, plain c) vs aggregate with methods (`dearimgui`, C++)? there is no big difference I guess but nevertheless
+2. class vs struct? reference type vs value type
+3. to use const qualifier or not to use?
+4. polygons are convex only (at least now) - both `dearimgui` and `nuklear` use only convex ones
+5. coordinates are fractional. In `dearimgui` pixels have fractional coordinates but width and height for example are integer values. `Nuklear` has float coordinates and also width and height.
+6. how to set Image where the backend render to? both `dearimgui` and `nuklear` have no this functionality, they render to default buffer(?). Probably it could be implemented using:
+```
+ctx.beginFrame(Image image);
+...
+ctx.endFrame;
+```
+7. Vec2, Rect, Color - is it hardcoded types or templated API possible? `nuklear` let you define your own pixel/vertex format, so it is claimed by users.
+
+# Fonts and text drawing
+
+Planned to some next PR.
