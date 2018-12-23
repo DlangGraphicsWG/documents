@@ -46,12 +46,16 @@
 
 - Image data should be held by an `IAllocator`
 
+- Images abstractions are 2D, not 3D, not N-dimensional.
+    * Pros:
+        - simple
+
+    * Cons:
+        - some niche domains need higher dimensional images.
 
 # Open questions (no vote occured yet)
 
 - Who owns `RuntimeImage` data?
-
-- whether the Image abstraction is 2D (N = 2), 3D-or-less (N <= 3) or N-dimensional (any N)
 
 - what exactly owns IAllocator?
 
