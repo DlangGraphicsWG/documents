@@ -4,7 +4,7 @@ First of all this is an attempt to gather information about state of Renderer in
 
 # What is a Renderer?
  
-Renderer contains a rendering state and provides functionality to draw primitives using specific color or texture. Renderer uses Image as a buffer to render to. Calling renderer method issues command to underlying hardware. The command is queued and flushed at some later time using some form of `flush` method. Renderer draw the following primitives:
+Renderer contains a rendering state and provides functionality to draw primitives using specific color or texture. Renderer uses Image as a buffer to render to. Calling renderer method issues command to the backend API. The command is queued and flushed at some later time. Renderer draw the following primitives:
 - point
 - line
 - polyline
@@ -17,7 +17,7 @@ Renderer contains a rendering state and provides functionality to draw primitive
 Lines can be stroked, 2D figures can be stroked and filled. Rectange can have rounded corners.
 
 Renderer is 2D only.
-Renderer is rasterizing. Vector renderer is out of scope this document.
+Renderer is vector one.
 Renderer API is like [dearimgu](https://github.com/ocornut/imgui) or [nuklear](https://github.com/vurtun/nuklear/blob/master/nuklear.h#L28).
 
 Example of renderer: 
