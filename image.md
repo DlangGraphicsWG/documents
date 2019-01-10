@@ -53,6 +53,28 @@
     * Cons:
         - some niche domains need higher dimensional images.
 
+## Aspect ratio discussion
+
+There are multiple aspect ratios:
+- Source aspect ratio  - shape of the image buffer: `width / height`
+- Pixel aspect ratio   - aspect ratio of image pixels as presented on the display
+- Display aspect ratio - shape picture should appear on screen: `sourceAspectRatio * pixel_aspect_ratio`
+
+- Various ways to express aspect ratio
+    1. Just store `displayAspectRatio`
+    2. DPIx:DPIx - `pixelAspectRatio = DPIx / DPIx`
+    3. Store `pixelAspectRatio` + `DPIx`
+
+After discussion, we decided to go with #3, because:
+1. Just storing `displayAspectRatio` omits DPI information, which can be interesting for certain applications
+2. Calculating `pixelAspectRatio` from `DPIx / DPIy` is unreliable, because not all images have DPI information available
+    - No reasonable defaults for DPI values, they are just arbitrary
+    - If DPI is zero, then `DPIx / DPIy` is division by zero!
+3. Storing a `pixelAspectRatio` is convenient, and a reasonable default exists (`1.0`) in lieu
+    - It is valid for either pixel aspect, or DPI, or both, or neither may be present
+    - Storing a single DPI value is convenient, because most images have matching H/V DPI
+    - Lossless transformation between representations is convenient
+
 # Open questions (no vote occured yet)
 
 - Who owns `RuntimeImage` data?
