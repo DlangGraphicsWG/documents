@@ -20,16 +20,10 @@ struct Result(T) {
     T data;
 }
 
-struct PngImage
-{
-    void[] data;
+Result!PngHeaderData loadPngHeader(const ubyte[] data);
+Result!ImageBuffer loadPng(const ubyte[] data, Allocator* allocator)
+Result!ImageBuffer loadPng(const ubyte[] data, Allocator* allocator, Allocator* chunkAllocator, out PngChunks* chunks)
 
-    this(void[] image) { data = image; ...}
-
-    Result!PngHeaderData header() const;
-
-    inout(Result!ImageBuffer) getImage() inout;
-}
 
 // This structure mirrors the file record
 align(1)
@@ -60,9 +54,10 @@ The reader should support interlaced images but should not be complicated with a
 
 If user wants to get ImageBuffer in certain format he will have to load one ImageBuffer and then through conversion functions get another ImageBuffer. This will require additional allocation but it makes the reader code and API much simpler.
 
+We are ok with PngChunks being implemented however for the first version and we can separately discuss later how to improve them, since that goes under "solving the memory ownership and auto allocation and deallocation" part which we need to solve for everything anyway.
+
 ## Open Questions
 
 1. Is my interpretation on what to do with format string above correct?
-2. Should we provide an option to getImage API for user to say that he doesn't want any chunks loaded as metadata, or that he wants only some chunks?
-3. If we do want that option how should it be provided? As enum flags, array of allowed chunk ids which are char[4] or...?
-4. I decided to use one mmap/VirtualAlloc call (through MMapAllocator) to allocate all the memory I will need for temporary processing while I load and process the data. Will this be good enough for all use cases?
+2. Should the API allow loading only some chunks and not just all or nothing?
+3. I decided to use one mmap/VirtualAlloc call (through MMapAllocator) to allocate all the memory I will need for temporary processing while I load and process the data. Will this be good enough for all use cases?
