@@ -48,7 +48,7 @@ With the above API you can read just the headers or the whole image. The ImageBu
 - rgb, rgb_16 for palette images without transparency and rgb images
 - rgba, rgba_16 for palette images with transparency and rgba images
 
-Any of these might get "^<g>" where <g> is non standard gamma read from the gamma chunk and "R{x,y,Y}G{x,y,Y}B{x,y,Y}" if there is a cHRM chunk. I have no idea what, if anything, should the reader do with sRGB and iCCP chunks if they are present.
+Any of these might get "^<g>" where <g> is non standard gamma read from the gamma chunk and "R{x,y}G{x,y}B{x,y}" and "@{x,y}" if there is a cHRM chunk. In case the numbers descibe some standard color space they will be replaced with its name. If there is sRGB chunk, sRGB colorspace is assumed and gAMA and cHRM chunks are ignored. if iCCP chunk is present it is ignored and just stored in a list of chunks.
 
 The reader should support interlaced images but should not be complicated with a streaming API (where png file is received in parts and read in multiple passes). It also should not be complicated with File API, but assume the png file can always be completely loaded in memory before parsing.
 
@@ -56,8 +56,8 @@ If user wants to get ImageBuffer in certain format he will have to load one Imag
 
 We are ok with PngChunks being implemented however for the first version and we can separately discuss later how to improve them, since that goes under "solving the memory ownership and auto allocation and deallocation" part which we need to solve for everything anyway.
 
+Because of different use and needs additional allocator is given for chunks. All temporary memory buffers should come from stack if possible and from main allocator otherwise.
+
 ## Open Questions
 
-1. Is my interpretation on what to do with format string above correct?
-2. Should the API allow loading only some chunks and not just all or nothing?
-3. I decided to use one mmap/VirtualAlloc call (through MMapAllocator) to allocate all the memory I will need for temporary processing while I load and process the data. Will this be good enough for all use cases?
+1. Should the API allow loading only some chunks and not just all or nothing?
