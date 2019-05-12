@@ -2,17 +2,17 @@
 
 The policy for the DlangGraphicsWG about errors is the following:
 
-## In the parts of the library that have to follow `-betterC`:
+1. Internal functions may use any mechanism, left at the discretion of the implementer
 
-- If the function is publicly exported by a module **and has to report an error message**,
-  use `Result!T` a combination of a nullable `T` an a message `string`.
+2. In the public parts of the library that have to follow `-betterC` (TBD):
 
-- Else if the function is part of the public API and doesn't have to report an error message, 
-  use error codes.
+  - If the function is publicly exported by a module **and has to report an error message**,
+    use `Result!T` a combination of a `T` an a message `string`.
+    If the message `string` is null then the `T` is valid.
 
-- Else If the function is private to a module, use either error codes or `Result!T`.
+  - Else if the function doesn't have to report an error message, use error codes (`bool` return and `out` params).
 
 
-## In the parts of the library that don't have to follow `-betterC` (TBD)
+3. In the parts of the library that don't have to follow `-betterC` (TBD)
 
 Use normal D exceptions.
