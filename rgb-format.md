@@ -1,5 +1,8 @@
 # RGB format description
 
+This document describes a format string spec to comprehensively and compactly describe RGB colour spaces.  
+Complete description data should be encoded in a human-readable/writable string, which may drive the correct rendering of RGB images.
+
 ## RGB colour properties
 
 Complete set of properties relating to an RGB colour:  
@@ -10,7 +13,7 @@ Complete set of properties relating to an RGB colour:
 - Colour space
 - Dynamic range
 - Other encoding options
-    - Swizzling, Endian, etc
+    - Swizzling, Endian, user data, etc
 
 ## RGB format string encoding:
 
@@ -22,7 +25,7 @@ A set of single character component names:
 - `l` - luma/luminance (`r = g = b`)
 - `a` - alpha (exempt from colourspace)
 - `e` - shared exponent
-- `x` - unused bits
+- `x` - unused bits (may appear multiple times)
 
 Component names are lower-case. (or should they be upper case? they could be case-insensitive, but then we halve the namespace for future expansion)
 
@@ -30,7 +33,7 @@ Component names are lower-case. (or should they be upper case? they could be cas
 Description of the format for each channel, underscore separated for each component
 Eg: `rgb_8_8_8`, `bgra_10_10_10_2`, `rgbe_9_9_9_5`, `rgba_s6_f11_4.8_u3`  
 Encoding options:
-- Omitted: 8 bit normalised integer for each compoent
+- Omitted: 8 bit normalised integer for each component
 - Unsigned normalised integer: `8`, `10`
 - Signed normalised integer: `s8`
 - Floating point: `f32`, `f11`
@@ -44,7 +47,7 @@ Encoding options:
 Open question: Is a more compact grammar possible? Without separating underscores?
 
 ### `colourspace` [optional]:  
-Coloursapce name or description.
+Colour space name or description.
 - Omitted: Assume sRGB
 - Typical names: `sRGB`, `DCI-P3`, `BT.709`, (documented set)
 - Adapted whitepoint using `'@'`: `sRGB@D50`
@@ -58,9 +61,10 @@ Coloursapce name or description.
 - Completely custom colourspace:
     - Eg: `R{0.64,0.33}G{0.3,0.6}B{0.15,0.06}@D50^sRGB`
 
-TODO: Dynamic range is not captured here; but the industry hasn't really settled on standard expressions. We'll need to do a little more research to decide on a good strategy.
+### `dynamic range` [optional]:  
+Currently there is no spec to describe the encoded dynamic range beyond implicit parameters according to a specific colour space (ie, `HDR10`, etc).
 
-Perhaps dynamic range should be separate from colourspace?
+TODO: the industry hasn't really settled on standard expressions. We'll need to do a little more research to decide on a good strategy.
 
 ### `"BE"` [optional]:  
 All formats should be read in bit-order, and encoded as little-endian bit-streams. This marker says to emit the bitstream as big-endian.
@@ -74,7 +78,6 @@ Eg:
 `bbbbbggg gggrrrrr` - `bgr_565`  
 `gggbbbbb rrrrrggg` - `rgb_565_BE`  
 `gggrrrrr bbbbbggg` - `bgr_565_BE`  
-
 
 ### `swizzle parameters` [optional]:  
 TODO: develop an expression for swizzling parameters that cover known hardware.  
@@ -91,11 +94,3 @@ May not contain `_` characters.
 I like `rgb_8_8_8` because it's very readable, and the `8_8_8` can be omitted and inferred for the most common colour formats.  
 An alternative strategy that eliminates the underscores would be to have the encoding follow the channel immediately, eg: `R8G8B8`  
 I feel this becomes very difficult to read with longer formats, eg: `R10fG10fB10fA2`, but it is gramatically sound.
-
-## RGB type
-
-Create an RGB colour struct that can express this set of options...
-
-For inspiration:  
-Operable RGB: https://github.com/TurkeyMan/color/blob/master/std/experimental/color/rgb.d  
-Bit-packed RGB: https://github.com/TurkeyMan/color/blob/master/std/experimental/color/packedrgb.d
