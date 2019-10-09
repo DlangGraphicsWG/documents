@@ -2,16 +2,16 @@
 
 This document discusses a minimal lowest-level API and reference implementation of 2D geometry renderer on CPU.
 
-We need to be able to draw various shapes from simple rectangles to complex filled and stroked paths.
+We need to be able to draw various shapes: from simple rectangles to complex filled and stroked paths.
 All these shapes can be converted into simpler ones - primitives - to be efficiently rasterized with a minimum of code.
 
 These are:
 - trapezoids with horizontal top and bottom edges
-- thin 1px lines
+- thin one-pixel lines
 
 Trapezoids are simpler and faster on CPU than triangles, and more suitable for 2D GUI. They are used in [Cairo and XRender](http://pixman.org/) for decades. A lot of [triangulation algorithms](https://en.wikipedia.org/wiki/Polygon_triangulation) construct trapezoid chains as a first step.
 
-Trapezoids are better to antialias, because, when y coordinates are not fractional, it only needs to smooth side edges, which are (almost?) always outside a shape.
+Trapezoids are better to antialias, because, when `y` coordinates are not fractional, it only needs to smooth side edges, which are (almost?) always outside a shape.
 
 Also, to draw trapezoids on GPU is only to split them in triangle pairs, so reference GPU backend can be implemented quicker using existing trapezoidation code (though of course it is better to write specialized triangulators later).
 
@@ -19,7 +19,7 @@ Thin lines could be represented as thin trapezoids, but it's more efficient to u
 
 ## How to represent common shapes using these primitives
 
-Assume we can flatten Bézier curves and arcs, i.e. make a list of segments with some presicion.
+Assume we can flatten Bézier curves and arcs, i.e. make a list of segments with some precision.
 
 Rectangle - a trapezoid with vertical sides.
 
@@ -59,7 +59,7 @@ alias Plot = void delegate(int x, int y);
 alias PlotAA = void delegate(int x, int y, float coverage);
 
 void drawTrapezoids(const Trapezoid[], Plot);
-void drawTrapezoidsAA(const Trapezoid[], PlotAA);
+void drawTrapezoidsAA(const Trapezoid[], Plot, PlotAA);
 
 void drawLine(int x0, int y0, int x1, int y1, Plot);
 void drawLineAA(float x0, float y0, float x1, float y1, PlotAA);
